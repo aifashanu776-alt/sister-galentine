@@ -1,22 +1,3 @@
-<audio id="bg-music" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
-<script>
-  const yesBtn = document.querySelector('.js-yes-btn');
-  const noBtn = document.querySelector('.js-no-btn');
-  const music = document.getElementById('bg-music');
-
-  let noClickCount = 0;
-
-  yesBtn.addEventListener('click', () => {
-    music.play();
-
-    document.querySelector('.question-container').style.display = 'none';
-    document.querySelector('.result-container').style.display = 'block';
-  });
-
-  noBtn.addEventListener('click', () => {
-    noClickCount++;
-    yesBtn.style.transform = `scale(${1 + noClickCount * 0.2})`;
-  });
-</script>
+<button onclick="window.open('https://youtu.be/YmXxPj5N_JY', '_blank')">
+  🎶 Play Ishq Bulava
+</button>
