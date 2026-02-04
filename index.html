@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Galentine for My Sisters 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffe6f0, #fff);
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 25px;
+      box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
+      max-width: 360px;
+      position: relative;
+      z-index: 2;
+    }
+
+    h2 {
+      color: #ff4d88;
+      margin-bottom: 15px;
+    }
+
+    .sisters-gif {
+      width: 220px;
+      border-radius: 20px;
+      margin-bottom: 15px;
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    button {
+      border: none;
+      padding: 12px 25px;
+      font-size: 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 10px;
+    }
+
+    .yes-btn {
+      background-color: #ff4d88;
+      color: white;
+      font-size: 20px;
+    }
+
+    .no-btn {
+      background-color: #ffd6e7;
+      color: #ff4d88;
+    }
+
+    .message {
+      display: none;
+      margin-top: 20px;
+      color: #ff3385;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .music-btn {
+      margin-top: 15px;
+      background: #ffe6f0;
+      color: #ff4d88;
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      color: #ff69b4;
+      font-size: 20px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.7;
+      z-index: 1;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(-110vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="container">
+    <h2>Do you love Shannu? 💕</h2>
+
+    <img
+      class="sisters-gif"
+      src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3Jpb2Y5d3d2aTJ5eDJnOW1tN3N2NnRvd3B3MndzY3J6eTVxNnR0eSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3oriO0OEd9QIDdllqo/giphy.gif"
+      alt="Three Sisters Animation">
+
+    <div class="buttons">
+      <button class="yes-btn" id="yesBtn">YES 💖</button>
+      <button class="no-btn" id="noBtn">NO 🙈</button>
+    </div>
+
+    <button class="music-btn" id="musicToggle">🔊 Music ON</button>
+
+    <div class="message" id="loveMessage">
+      💗 Shannu always loves her sisters… <br>
+      <strong>Bathool & SHIFA</strong> 🥰 <br>
+      Love you both forever 💞 <br>
+      Be my Galentine 💕
+    </div>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const message = document.getElementById("loveMessage");
+    const music = document.getElementById("bgMusic");
+    const musicToggle = document.getElementById("musicToggle");
+
+    let yesSize = 20;
+    let musicPlaying = false;
+
+    function playMusic() {
+      if (!musicPlaying) {
+        music.play();
+        musicPlaying = true;
+        musicToggle.textContent = "🔇 Music OFF";
+      }
+    }
+
+    musicToggle.addEventListener("click", () => {
+      if (musicPlaying) {
+        music.pause();
+        musicPlaying = false;
+        musicToggle.textContent = "🔊 Music ON";
+      } else {
+        playMusic();
+      }
+    });
+
+    noBtn.addEventListener("click", () => {
+      playMusic();
+      yesSize += 10;
+      yesBtn.style.fontSize = yesSize + "px";
+      yesBtn.style.padding = "18px 35px";
+    });
+
+    yesBtn.addEventListener("click", () => {
+      playMusic();
+      message.style.display = "block";
+      noBtn.style.display = "none";
+    });
+
+    // Floating hearts generator
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💗";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 15 + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }, 500);
+  </script>
+
+</body>
+</html>
